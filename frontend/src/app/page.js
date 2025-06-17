@@ -1,5 +1,4 @@
-import Image from "next/image";
-import Nav from "./nav";
+import Nav from "../components/nav";
 import Mainbody from "./mainbody";
 
 export default function Home() {

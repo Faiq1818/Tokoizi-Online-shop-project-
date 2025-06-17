@@ -2,12 +2,33 @@
 import { useState } from 'react';
 
 export default function InputSection() {
-  const [image, setImage] = useState(null);
+  const [image1, setImage1] = useState(null);
+  const [image2, setImage2] = useState(null);
+  const [image3, setImage3] = useState(null);
+  const [image4, setImage4] = useState(null);
 
-  function handleImageChange(e) {
+  function handleImage1Change(e) {
     const file = e.target.files[0];
     if (file) {
-      setImage(URL.createObjectURL(file));
+      setImage1(URL.createObjectURL(file));
+    }
+  }
+  function handleImage2Change(e) {
+    const file = e.target.files[0];
+    if (file) {
+      setImage2(URL.createObjectURL(file));
+    }
+  }
+  function handleImage3Change(e) {
+    const file = e.target.files[0];
+    if (file) {
+      setImage3(URL.createObjectURL(file));
+    }
+  }
+  function handleImage4Change(e) {
+    const file = e.target.files[0];
+    if (file) {
+      setImage4(URL.createObjectURL(file));
     }
   }
 
@@ -43,7 +64,7 @@ export default function InputSection() {
                 type="file"
                 accept="image/*"
                 className="hidden"
-                onChange={handleImageChange}
+                onChange={handleImage1Change}
               />
             </label>
             <label className="cursor-pointer inline-block bg-blue-500 text-white px-2 py-1 rounded-md mr-4">
@@ -52,7 +73,7 @@ export default function InputSection() {
                 type="file"
                 accept="image/*"
                 className="hidden"
-                onChange={handleImageChange}
+                onChange={handleImage2Change}
               />
             </label>
             <label className="cursor-pointer inline-block bg-blue-500 text-white px-2 py-1 rounded-md mr-4">
@@ -61,7 +82,7 @@ export default function InputSection() {
                 type="file"
                 accept="image/*"
                 className="hidden"
-                onChange={handleImageChange}
+                onChange={handleImage3Change}
               />
             </label>
             <label className="cursor-pointer inline-block bg-blue-500 text-white px-2 py-1 rounded-md mr-4">
@@ -70,16 +91,20 @@ export default function InputSection() {
                 type="file"
                 accept="image/*"
                 className="hidden"
-                onChange={handleImageChange}
+                onChange={handleImage4Change}
               />
             </label>
 
           </div>
           <div className='flex flex-row'>
-            {image && <img src={image} alt="Preview" className="mt-4 mr-4 w-32 h-32" />}
-            {image && <img src={image} alt="Preview" className="mt-4 mr-4 w-32 h-32" />}
-            {image && <img src={image} alt="Preview" className="mt-4 mr-4 w-32 h-32" />}
-            {image && <img src={image} alt="Preview" className="mt-4 mr-4 w-32 h-32" />}
+            {image1 && <img src={image1} alt="Preview" className="mt-4 mr-4 w-32 h-32" />}
+            {image2 && <img src={image2} alt="Preview" className="mt-4 mr-4 w-32 h-32" />}
+            {image3 && <img src={image3} alt="Preview" className="mt-4 mr-4 w-32 h-32" />}
+            {image4 && <img src={image4} alt="Preview" className="mt-4 mr-4 w-32 h-32" />}
+          </div>
+
+          <div className='mt-10'>
+            <button className='px-2 py-1 rounded-sm' style={{color: '#eff1f5',backgroundColor: '#7287fd'}}>Upload Barang</button>
           </div>
         </div>
       </div>

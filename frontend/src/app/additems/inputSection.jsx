@@ -2,35 +2,24 @@
 import { useState } from 'react';
 
 export default function InputSection() {
-  const [image1, setImage1] = useState(null);
-  const [image2, setImage2] = useState(null);
-  const [image3, setImage3] = useState(null);
-  const [image4, setImage4] = useState(null);
+  const [images, setImages] = useState([null, null, null, null]);
+  const [inputValue, setInputValue] = useState("");
 
-  function handleImage1Change(e) {
+
+  function handleImageChange(e, index) {
     const file = e.target.files[0];
     if (file) {
-      setImage1(URL.createObjectURL(file));
+      const newImages = [...images];
+      newImages[index] = URL.createObjectURL(file);
+      setImages(newImages);
     }
   }
-  function handleImage2Change(e) {
-    const file = e.target.files[0];
-    if (file) {
-      setImage2(URL.createObjectURL(file));
-    }
-  }
-  function handleImage3Change(e) {
-    const file = e.target.files[0];
-    if (file) {
-      setImage3(URL.createObjectURL(file));
-    }
-  }
-  function handleImage4Change(e) {
-    const file = e.target.files[0];
-    if (file) {
-      setImage4(URL.createObjectURL(file));
-    }
-  }
+
+  const onChangeHandler1 = event => {
+     setInputValue(event.target.value);
+  };
+
+  function handleSendData(){}
 
   return(
     <>
@@ -39,7 +28,7 @@ export default function InputSection() {
           <div className="pt-5">
             Nama Toko:
           </div>
-          <input placeholder="Masukan disini" style={{backgroundColor: '#181825'}} className="p-1 rounded-md"/>
+          <input placeholder="Masukan disini" value={inputValue} onChange={onChangeHandler1} style={{backgroundColor: '#181825'}} className="p-1 rounded-md"/>
           <div className="pt-5">
             Nama Barang:
           </div>
@@ -57,54 +46,33 @@ export default function InputSection() {
             Foto barang (Minimal 1 foto):
           </div>
 
-          <div>
-            <label className="cursor-pointer inline-block bg-blue-500 text-white px-2 py-1 rounded-md mr-4">
-              Pilih Gambar 1
+          {[0, 1, 2, 3].map((i) => (
+            <label key={i} className="cursor-pointer inline-block bg-blue-500 text-white px-2 py-1 rounded-md mr-4">
+              Pilih Gambar {i + 1}
               <input
                 type="file"
                 accept="image/*"
                 className="hidden"
-                onChange={handleImage1Change}
+                onChange={(e) => handleImageChange(e, i)}
               />
             </label>
-            <label className="cursor-pointer inline-block bg-blue-500 text-white px-2 py-1 rounded-md mr-4">
-              Pilih Gambar 2
-              <input
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={handleImage2Change}
-              />
-            </label>
-            <label className="cursor-pointer inline-block bg-blue-500 text-white px-2 py-1 rounded-md mr-4">
-              Pilih Gambar 3
-              <input
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={handleImage3Change}
-              />
-            </label>
-            <label className="cursor-pointer inline-block bg-blue-500 text-white px-2 py-1 rounded-md mr-4">
-              Pilih Gambar 4
-              <input
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={handleImage4Change}
-              />
-            </label>
+          ))}
 
-          </div>
           <div className='flex flex-row'>
-            {image1 && <img src={image1} alt="Preview" className="mt-4 mr-4 w-32 h-32" />}
-            {image2 && <img src={image2} alt="Preview" className="mt-4 mr-4 w-32 h-32" />}
-            {image3 && <img src={image3} alt="Preview" className="mt-4 mr-4 w-32 h-32" />}
-            {image4 && <img src={image4} alt="Preview" className="mt-4 mr-4 w-32 h-32" />}
+            {images.map((img, i) =>
+              img ? (
+                <img
+                  key={i}
+                  src={img}
+                  alt={`Preview ${i + 1}`}
+                  className="mt-4 mr-4 w-32 h-32"
+                />
+              ) : null
+            )}
           </div>
 
           <div className='mt-10'>
-            <button className='px-2 py-1 rounded-sm' style={{color: '#eff1f5',backgroundColor: '#7287fd'}}>Upload Barang</button>
+            <button className='px-2 py-1 rounded-sm cursor-pointer' style={{color: '#eff1f5',backgroundColor: '#7287fd'}} onClick={handleSendData}>Upload Barang</button>
           </div>
         </div>
       </div>

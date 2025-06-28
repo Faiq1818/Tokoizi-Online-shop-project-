@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cookieParser = require("cookie-parser");
 const port = 3000
 const app = express();
 
@@ -8,6 +9,7 @@ const authRoutes = require('./routes/auth');
 
 app.use(express.json());
 app.use('/auth', authRoutes);
+app.use(cookieParser());
 
 
 // Protected route example

@@ -28,6 +28,7 @@ router.post('/login', async (req, res) => {
 
   // Generate token
   const token = jwt.sign({ userId: user.username }, secretKey, { expiresIn: '1h' });
+  res.cookie('authcookie',token,{maxAge:900000,httpOnly:true}) 
 
   res.status(200).send({ token });
 });

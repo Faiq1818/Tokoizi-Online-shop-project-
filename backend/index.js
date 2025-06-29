@@ -7,6 +7,12 @@ const app = express();
 const authenticateToken = require('./middleware/authenticateToken');
 const authRoutes = require('./routes/auth');
 
+const cors = require('cors');
+
+app.use(cors({
+  origin: 'http://localhost:3001'
+}));
+
 app.use(express.json());
 app.use('/auth', authRoutes);
 app.use(cookieParser());

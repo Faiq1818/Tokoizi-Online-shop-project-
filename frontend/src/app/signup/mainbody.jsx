@@ -1,11 +1,27 @@
 'use client';
 import { useState } from "react"
+import axios from "axios";
 
 export default function MainBody(){
-  
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    axios.post('http://localhost:3000/auth/signup', {
+      email: email,
+      password: password
+    })
+    .then((response) => {
+      console.log(response);
+      alert("Sign up berhasil!");
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("Sign up gagal!");
+    });
+  }
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -24,7 +40,7 @@ export default function MainBody(){
           <input placeholder="Password" className="bg-[#b4befe] p-1" value={password} onChange={handleChangePassword}/>
         </div>
         <div className="flex flex-col">
-          <button className="bg-[#f38ba8] mt-2 mb-1">Sign Up</button>
+          <button className="bg-[#f38ba8] mt-2 mb-1" onClick={handleSubmit}>Sign Up</button>
           <button className="bg-[#89b4fa]">Login</button>
         </div>
       </div>

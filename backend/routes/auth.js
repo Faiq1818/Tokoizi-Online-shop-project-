@@ -37,9 +37,26 @@ router.post('/login', async (req, res) => {
   }
 
   const token = jwt.sign({ userId: user.email }, secretKey, { expiresIn: '1h' });
-  res.cookie('authcookie', token, { maxAge: 900000, httpOnly: true });
+  res.cookie('authcookie', token, { maxAge: 900000, httpOnly: true, secure: false, sameSite: 'Lax'});
 
   res.status(200).send({ token });
+});
+
+router.get('/verify', (req, res) => {
+  const token = req.cookies.authcookie;
+  if (!token) return res.status(401).json({ loggedIn: false });
+
+  try {
+    const user = jwt.verify(token, secretKey);
+    res.json({ loggedIn: true, user });
+  } catch (e) {
+    res.status(401).json({ loggedIn: false });
+  }
+});
+
+router.get('/deletecookie', function (req, res) {
+    res.clearCookie('authcookie');
+    console.log("Cookie cleared");
 });
 
 module.exports = router;

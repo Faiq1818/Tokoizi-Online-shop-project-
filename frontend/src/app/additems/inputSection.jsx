@@ -3,7 +3,9 @@ import { useState } from 'react';
 
 export default function InputSection() {
   const [images, setImages] = useState([null, null, null, null]);
-  const [inputValue, setInputValue] = useState("");
+  const [itemName, setItemName] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
 
 
   function handleImageChange(e, index) {
@@ -15,32 +17,57 @@ export default function InputSection() {
     }
   }
 
-  const onChangeHandler1 = event => {
-     setInputValue(event.target.value);
+  const onChangeItemName = event => {
+     setItemName(event.target.value);
   };
 
-  function handleSendData(){}
+  const onChangePrice = event => {
+     setPrice(event.target.value);
+  };
+
+  const onChangeDescription = event => {
+     setDescription(event.target.value);
+  };
+
+    
+  const handleSendData = (event) => {
+    event.preventDefault();
+
+    axios.post('http://localhost:3000/auth/login', {
+      email: email,
+      password: password
+    }, {
+      withCredentials: true // WAJIB untuk mengirim/terima cookie cross-origin
+    })
+    .then((response) => {
+      console.log(response);
+      alert("Sign up berhasil!");
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("Sign up gagal!");
+    });
+  }
+  }
 
   return(
     <>
       <div className="" style={{backgroundColor: '#1e1e2e', color: '#cdd6f4'}}>
         <div>
           <div className="pt-5">
-            Nama Toko:
-          </div>
-          <input placeholder="Masukan disini" value={inputValue} onChange={onChangeHandler1} style={{backgroundColor: '#181825'}} className="p-1 rounded-md"/>
-          <div className="pt-5">
             Nama Barang:
           </div>
-          <input placeholder="Masukan disini" style={{backgroundColor: '#181825'}} className="p-1 rounded-md"/>
+          <input placeholder="Masukan disini" value={itemName} onChange={onChangeItemName} style={{backgroundColor: '#181825'}} className="p-1 rounded-md"/>
+
           <div className="pt-5">
             Harga:
           </div>
-          <input placeholder="Contoh: 20000" type="number" style={{backgroundColor: '#181825'}} className="p-1 rounded-md"/>
+          <input placeholder="Contoh: 20000" value={price} onChange={onChangePrice} type="number" style={{backgroundColor: '#181825'}} className="p-1 rounded-md"/>
+
           <div className="pt-5">
             Deskripsi:
           </div>
-          <textarea className="w-96 h-32" style={{backgroundColor: '#181825'}} placeholder="Masukan disini"></textarea>
+          <textarea className="w-96 h-32" value={description} onChange={onChangeDescription} style={{backgroundColor: '#181825'}} placeholder="Masukan disini"></textarea>
 
           <div className="pt-5">
             Foto barang (Minimal 1 foto):

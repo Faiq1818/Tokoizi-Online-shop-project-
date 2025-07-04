@@ -6,17 +6,20 @@ const app = express();
 
 const authenticateToken = require('./middleware/authenticateToken');
 const authRoutes = require('./routes/auth');
+const sendItemsData = require('./controllers/sendItems.controllers');
 
 const cors = require('cors');
 
 app.use(cors({
-  origin: 'http://localhost:3001'
+  origin: 'http://localhost:3001',
+  credentials: true
 }));
 
 app.use(express.json());
-app.use('/auth', authRoutes);
 app.use(cookieParser());
 
+app.use('/auth', authRoutes);
+app.use('/controller', sendItemsData);
 
 // Protected route example
 app.get('/dashboard', authenticateToken, (req, res) => {

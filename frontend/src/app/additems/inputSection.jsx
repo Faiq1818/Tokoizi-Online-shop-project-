@@ -48,7 +48,7 @@ export default function InputSection() {
       alert("Sign up gagal!");
     });
   }
-  }
+  
 
   return(
     <>

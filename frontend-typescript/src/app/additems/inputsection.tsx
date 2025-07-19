@@ -3,14 +3,14 @@ import { useState, ChangeEvent, MouseEvent } from 'react';
 import axios from "axios";
 
 export default function InputSection() {
-  const [images, setImages] = useState([null, null, null, null]);
+  const [images, setImages] = useState<(string | null)[]>([null, null, null, null]);
   const [itemName, setItemName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
 
-  function handleImageChange(e: ChangeEvent<HTMLInputElement>, index: any) {
+  function handleImageChange(e: ChangeEvent<HTMLInputElement>, index: number) {
+    if (e.target.files && e.target.files.length > 0) {
     const file = e.target.files[0];
-    if (file) {
       const newImages = [...images];
       newImages[index] = URL.createObjectURL(file);
       setImages(newImages);

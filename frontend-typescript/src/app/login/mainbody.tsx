@@ -1,10 +1,12 @@
 'use client';
 import { useState, ChangeEvent, MouseEvent } from "react"
 import axios from "axios";
+import { useRouter } from 'next/navigation';
 
 export default function MainBody(){
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const handleSubmit = (event: MouseEvent) => {
     event.preventDefault();
@@ -17,11 +19,12 @@ export default function MainBody(){
     })
     .then((response) => {
       console.log(response);
-      alert("Sign up berhasil!");
+      alert("Login berhasil!");
+      router.push('/');
     })
     .catch((error) => {
       console.log(error);
-      alert("Sign up gagal!");
+      alert("Login gagal!");
     });
   }
 

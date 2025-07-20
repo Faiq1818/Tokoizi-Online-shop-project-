@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cookieParser = require("cookie-parser");
 const port = 3000
 const app = express();
+const uri = "mongodb+srv://ghozyerlanggafaiq:TlxeHdKsicBGpWIr@faiqdb.ffsw00w.mongodb.net/?retryWrites=true&w=majority&appName=FaiqDB";
 
 const authenticateToken = require('./middleware/authenticateToken');
 const authRoutes = require('./routes/auth');
@@ -27,9 +28,8 @@ app.get('/dashboard', authenticateToken, (req, res) => {
 });
 
 // Database Connect
-mongoose.connect('mongodb://127.0.0.1:27017/dbTokoizi', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
+mongoose.connect(uri, {
+  dbName: 'TokoiziDB'
 })
   .then(() => console.log("Connection to Mongodb Successful"))
   .catch((err) => console.error("Connection to Mongodb Error:", err));

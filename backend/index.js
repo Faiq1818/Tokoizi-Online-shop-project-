@@ -1,14 +1,14 @@
 const express = require('express');
+require('dotenv').config()
 const mongoose = require('mongoose');
 const cookieParser = require("cookie-parser");
 const port = 3000
 const app = express();
-const uri = "mongodb+srv://ghozyerlanggafaiq:TlxeHdKsicBGpWIr@faiqdb.ffsw00w.mongodb.net/?retryWrites=true&w=majority&appName=FaiqDB";
+const uri = process.env.MONGO_URI;
 
 const authenticateToken = require('./middleware/authenticateToken');
 const authRoutes = require('./routes/auth');
 const sendItemsData = require('./controllers/sendItems.controllers');
-require('dotenv').config()
 
 const cors = require('cors');
 

@@ -8,6 +8,7 @@ const uri = "mongodb+srv://ghozyerlanggafaiq:TlxeHdKsicBGpWIr@faiqdb.ffsw00w.mon
 const authenticateToken = require('./middleware/authenticateToken');
 const authRoutes = require('./routes/auth');
 const sendItemsData = require('./controllers/sendItems.controllers');
+require('dotenv').config()
 
 const cors = require('cors');
 

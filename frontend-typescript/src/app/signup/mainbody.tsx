@@ -1,12 +1,14 @@
 'use client';
-import { useState } from "react"
+import { useState, ChangeEvent, MouseEvent } from "react"
 import axios from "axios";
+import { useRouter } from 'next/navigation';
 
 export default function MainBody(){
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: MouseEvent) => {
     event.preventDefault();
 
     axios.post('http://localhost:3000/auth/signup', {
@@ -16,6 +18,7 @@ export default function MainBody(){
     .then((response) => {
       console.log(response);
       alert("Sign up berhasil!");
+      router.push('/login');
     })
     .catch((error) => {
       console.log(error);
@@ -23,12 +26,12 @@ export default function MainBody(){
     });
   }
 
-  const handleChangeEmail = (e) => {
-    setEmail(e.target.value);
+  const handleChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
   };
 
-  const handleChangePassword = (e) => {
-    setPassword(e.target.value);
+  const handleChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
   };
 
   return(

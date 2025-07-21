@@ -32,20 +32,20 @@ export default function InputSection() {
     
   const handleSendData = (event: MouseEvent) => {
     event.preventDefault();
-
-    axios.post('http://localhost:3000/auth/login', {
-      email: email,
-      password: password
+    axios.post('http://localhost:3000/addItems', {
+      itemName: itemName,
+      price: price,
+      description: description
     }, {
-      withCredentials: true // WAJIB untuk mengirim/terima cookie cross-origin
+      withCredentials: true
     })
     .then((response) => {
       console.log(response);
-      alert("Sign up berhasil!");
+      alert("Login berhasil!");
     })
     .catch((error) => {
       console.log(error);
-      alert("Sign up gagal!");
+      alert("Login gagal!");
     });
   }
   

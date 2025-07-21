@@ -8,6 +8,7 @@ const uri = process.env.MONGO_URI;
 
 const authenticateToken = require('./middleware/authenticateToken');
 const authRoutes = require('./routes/auth');
+const addItemsRoutes = require('./routes/addItemsRoutes');
 const sendItemsData = require('./controllers/sendItems.controllers');
 
 const cors = require('cors');
@@ -22,6 +23,7 @@ app.use(cookieParser());
 
 app.use('/auth', authRoutes);
 app.use('/controller', sendItemsData);
+app.use(addItemsRoutes);
 
 // Protected route example
 app.get('/dashboard', authenticateToken, (req, res) => {

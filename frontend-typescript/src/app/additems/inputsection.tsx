@@ -3,7 +3,7 @@ import { useState, ChangeEvent, MouseEvent } from 'react';
 import axios from "axios";
 
 export default function InputSection() {
-  const [images, setImages] = useState<(string | null)[]>([null, null, null, null]);
+  const [images, setImages] = useState<(File | null)[]>([null, null, null, null]);
   const [itemName, setItemName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
@@ -12,7 +12,7 @@ export default function InputSection() {
     if (e.target.files && e.target.files.length > 0) {
     const file = e.target.files[0];
       const newImages = [...images];
-      newImages[index] = URL.createObjectURL(file);
+      newImages[index] = file;
       setImages(newImages);
     }
   }
@@ -32,20 +32,29 @@ export default function InputSection() {
     
   const handleSendData = (event: MouseEvent) => {
     event.preventDefault();
-    axios.post('http://localhost:3000/addItems', {
-      itemName: itemName,
-      price: price,
-      description: description
-    }, {
-      withCredentials: true
+    let formData = new FormData();
+    formData.append("itemName", itemName);
+    formData.append("price", price);
+    formData.append("description", description);
+    images.forEach((image, index) => {
+      if (image) {
+        formData.append("images", image);
+      }
+    });
+
+    axios.post('http://localhost:3000/addItems', formData, {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
     })
     .then((response) => {
       console.log(response);
-      alert("Login berhasil!");
+      alert("kirim data berhasil!");
     })
     .catch((error) => {
       console.log(error);
-      alert("Login gagal!");
+      alert("kirim data gagal!");
     });
   }
   
@@ -90,7 +99,7 @@ export default function InputSection() {
               img ? (
                 <img
                   key={i}
-                  src={img}
+                  src={URL.createObjectURL(img)}
                   alt={`Preview ${i + 1}`}
                   className="mt-4 mr-4 w-32 h-32"
                 />

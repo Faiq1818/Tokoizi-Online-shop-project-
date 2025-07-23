@@ -1,12 +1,14 @@
 'use client';
 import { useState, ChangeEvent, MouseEvent } from 'react';
 import axios from "axios";
+import { useRouter } from 'next/navigation';
 
 export default function InputSection() {
   const [images, setImages] = useState<(File | null)[]>([null, null, null, null]);
   const [itemName, setItemName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
+  const router = useRouter();
 
   function handleImageChange(e: ChangeEvent<HTMLInputElement>, index: number) {
     if (e.target.files && e.target.files.length > 0) {
@@ -51,6 +53,7 @@ export default function InputSection() {
     .then((response) => {
       console.log(response);
       alert("kirim data berhasil!");
+      router.push('/');
     })
     .catch((error) => {
       console.log(error);

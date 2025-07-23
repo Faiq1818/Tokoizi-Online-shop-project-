@@ -1,21 +1,21 @@
 // routes/auth.js
-const express = require('express');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const express = require("express");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const router = express.Router();
-require('dotenv').config()
+require("dotenv").config();
 const secretKey = process.env.SECRET_KEY;
 
-const User = require('../models/user');
+const User = require("../models/user");
 
 // Signup route
-router.post('/signup', async (req, res) => {
+router.post("/signup", async (req, res) => {
   const { email, password } = req.body;
 
   // Cek apakah username sudah ada
   const existingUser = await User.findOne({ email });
   if (existingUser) {
-    return res.status(400).send('Username already taken');
+    return res.status(400).send("Username already taken");
   }
 
   // Hash password
@@ -25,25 +25,32 @@ router.post('/signup', async (req, res) => {
   const newUser = new User({ email, password: hashedPassword });
   await newUser.save();
 
-  res.status(201).send('User created');
+  res.status(201).send("User created");
 });
 
 // Login route
-router.post('/login', async (req, res) => {
+router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
   if (!user || !(await bcrypt.compare(password, user.password))) {
-    return res.status(401).send('Invalid credentials');
+    return res.status(401).send("Invalid credentials");
   }
 
-  const token = jwt.sign({ userId: user.email }, secretKey, { expiresIn: '1h' });
-  res.cookie('authcookie', token, { maxAge: 900000, httpOnly: true, secure: false, sameSite: 'Lax'});
+  const token = jwt.sign({ userId: user.email }, secretKey, {
+    expiresIn: "1h",
+  });
+  res.cookie("authcookie", token, {
+    maxAge: 900000,
+    httpOnly: true,
+    secure: false,
+    sameSite: "Lax",
+  });
 
   res.status(200).send({ token });
 });
 
-router.get('/verify', (req, res) => {
+router.get("/verify", (req, res) => {
   const token = req.cookies.authcookie;
   if (!token) return res.status(401).json({ loggedIn: false });
 
@@ -55,9 +62,9 @@ router.get('/verify', (req, res) => {
   }
 });
 
-router.get('/deletecookie', function (req, res) {
-    res.clearCookie('authcookie');
-    console.log("Cookie cleared");
+router.get("/deletecookie", function (req, res) {
+  res.clearCookie("authcookie");
+  console.log("Cookie cleared");
 });
 
 module.exports = router;

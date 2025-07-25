@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const port = 3000;
 const app = express();
-const uri = process.env.MONGO_URI;
+const uri = process.env.MONGO_URI_DEV;
 
 const authenticateToken = require("./middleware/authenticateToken");
 const authRoutes = require("./routes/auth");
@@ -34,13 +34,23 @@ app.get("/dashboard", authenticateToken, (req, res) => {
   res.status(200).send("Welcome to the dashboard, " + req.user.userId);
 });
 
+console.log("MONGO_URI:", uri);
 // Database Connect
-mongoose
-  .connect(uri, {
-    dbName: "TokoiziDB",
-  })
-  .then(() => console.log("Connection to Mongodb Successful"))
-  .catch((err) => console.error("Connection to Mongodb Error:", err));
+async function connectDB() {
+  try{
+  mongoose
+    .connect(uri, {
+      dbName: "TokoiziDB",
+    });
+    console.log("Connection to Mongodb Successful")
+  }
+
+catch (err) {
+    console.error("❌ MongoDB Connection Error:", err);
+    process.exit(1);
+  }
+}
+connectDB();
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

@@ -10,6 +10,7 @@ const authenticateToken = require("./middleware/authenticateToken");
 const authRoutes = require("./routes/auth");
 const addItemsRoutes = require("./routes/addItemsRoutes");
 const cardsrootRoutes = require("./routes/cardSection-root");
+const imgHandler = require("./routes/imgHandler");
 const sendItemsData = require("./controllers/sendItems.controllers");
 
 const cors = require("cors");
@@ -28,6 +29,7 @@ app.use("/auth", authRoutes);
 app.use("/controller", sendItemsData);
 app.use(addItemsRoutes);
 app.use(cardsrootRoutes);
+app.use(imgHandler);
 
 // Protected route example
 app.get("/dashboard", authenticateToken, (req, res) => {

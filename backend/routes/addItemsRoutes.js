@@ -17,7 +17,6 @@ router.post('/additems', upload.array('images', 4), async (req, res) => {
     const user = jwt.verify(token, secretKey);
     const imagePaths = gambar.map(file => file.path);
     const email = user.userId;
-    //res.json({ UserId: user.userId, gambar: gambar[0], gambar2: gambar[3], itemName, price, description });
 
     const newItem = new Items({
       itemName,

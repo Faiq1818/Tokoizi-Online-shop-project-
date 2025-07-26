@@ -1,25 +1,44 @@
-import Cardsection from "./cardsection"
+"use client";
+import { useState, useEffect } from "react";
+import Cardsection from "./cardsection";
+import axios from "axios";
+
+type CardItem = {
+  email: string;
+  itemName: string;
+  price: string;
+  description: string;
+  images: string[]
+};
 
 export default function Generatecardsection() {
-  return(
+  const [cardData, setCardData] = useState<CardItem[]>([]);
+  const [totalCardNow, setTotalCardNow] = useState(0);
+  const [totalCardMax, setTotalCardMax] = useState(0);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/getcardsroot", {
+        withCredentials: true,
+      })
+      .then((response) => {
+        setCardData(response.data);
+        console.log(cardData);
+        //alert("data berhasil!");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("data gagal!");
+      });
+  }, []);
+
+  return (
     <>
       <div className="flex flex-wrap gap-10 justify-between">
-        <Cardsection/>
-        <Cardsection/>
-        <Cardsection/>
-        <Cardsection/>
-        <Cardsection/>
-        <Cardsection/>
-        <Cardsection/>
-        <Cardsection/>
-        <Cardsection/>
-        <Cardsection/>
-        <Cardsection/>
-        <Cardsection/>
-        <Cardsection/>
-        <Cardsection/>
-        <Cardsection/>
+        {cardData.map((item, index) => (
+          <Cardsection key={index} cardData={item} />
+        ))}
       </div>
     </>
-  )
+  );
 }

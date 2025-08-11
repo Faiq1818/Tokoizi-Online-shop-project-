@@ -35,18 +35,27 @@ export default function MainBody(){
   };
 
   return(
-    <>
-      <div className="bg-[#45475a] p-3 w-1/4">
-        <p className="text-white">Sign Up</p>
-        <div className="flex flex-col">
-          <input placeholder="Email" className="bg-[#b4befe] p-1 my-1" value={email} onChange={handleChangeEmail}/>
-          <input placeholder="Password" className="bg-[#b4befe] p-1" value={password} onChange={handleChangePassword}/>
-        </div>
-        <div className="flex flex-col">
-          <button className="bg-[#f38ba8] mt-2 mb-1" onClick={handleSubmit}>Sign Up</button>
-          <button className="bg-[#89b4fa]">Login</button>
+    <div className="flex flex-row">
+      <div className="bg-gradient-to-tl from-sky-500 via-fuchsia-300 to-slate-100 rounded-l-lg">
+        <div className="text-2xl font-bold text-[#898AC4] mr-40 ml-2 mt-1 items-start">
+          TOKOIZI
         </div>
       </div>
-    </>
+
+      <div className="flex flex-col border-[#e5e7eb] border rounded-r-lg p-10">
+        <div className="text-2xl font-bold text-[#898AC4] items-start mb-3">
+          Sign Up Page
+        </div>
+        <div className="flex flex-col">
+          <input placeholder="Email" className="border-[#e5e7eb] border p-1 my-1 mb-4" value={email} onChange={handleChangeEmail}/>
+          <input placeholder="Password" className="border-[#e5e7eb] border p-1 mb-4" value={password} onChange={handleChangePassword}/>
+        </div>
+        <div className="text-center mb-4">
+          <button className="bg-[#373737] px-4 py-1 rounded-md text-white mt-2 mb-1" onClick={handleSubmit}>Sign Up</button>
+        </div>
+        <div className="text-sm">Have accounts already?</div>
+        <div className="text-sm text-blue-700">Login</div>
+      </div>
+    </div>
   )
 }

@@ -1,11 +1,12 @@
+// Dependencies
 const express = require("express");
 require("dotenv").config();
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
-const port = 3000;
+const cors = require("cors");
 const app = express();
-const uri = process.env.MONGO_URI_DEV;
 
+// Routes and Middleware
 const authenticateToken = require("./middleware/authenticateToken");
 const authRoutes = require("./routes/auth");
 const addItemsRoutes = require("./routes/addItemsRoutes");
@@ -13,7 +14,9 @@ const cardsrootRoutes = require("./routes/cardSection-root");
 const imgHandler = require("./routes/imgHandler");
 const sendItemsData = require("./controllers/sendItems.controllers");
 
-const cors = require("cors");
+// Config
+const port = 3000;
+const uri = process.env.MONGO_URI_DEV;
 
 app.use(
   cors({

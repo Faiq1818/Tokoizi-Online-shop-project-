@@ -5,13 +5,13 @@ import { useAuth } from '@/hooks/use-auth';
 import Nav from "../../components/nav";
 import Mainbody from "./mainbody";
 
-export default function AddItems() {
+export default function userpage() {
   const { loading, loggedIn } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
     if (!loading && !loggedIn) {
-      router.push('/login');
+      router.replace('/login');
     }
   }, [loading, loggedIn, router]);
 

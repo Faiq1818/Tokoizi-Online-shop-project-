@@ -19,7 +19,7 @@ export default function Nav(){
         <div className="columns-2 flex flex-row space-x-2 items-center">
           <IoMdAddCircleOutline size={25} onClick={() => router.push('/additems')}/>
           <CiShoppingCart className="" size={25}/>
-          <CiUser size={25} onClick={() => router.push('/additems')}/>
+          <CiUser size={25} onClick={() => router.push('/user')}/>
         </div>
       </nav>
     </>

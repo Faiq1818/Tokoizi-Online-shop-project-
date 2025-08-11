@@ -11,7 +11,7 @@ export default function AddItems() {
 
   useEffect(() => {
     if (!loading && !loggedIn) {
-      router.push('/login');
+      router.replace('/login');
     }
   }, [loading, loggedIn, router]);
 

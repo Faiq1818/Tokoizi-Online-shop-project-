@@ -1,9 +1,9 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const Items = require('../models/items');
+const Items = require("../models/items");
 
-router.get('/getcardsroot', async (req, res) => {
+router.get("/getcardsroot", async (req, res) => {
   const user = await Items.find();
   res.json(user);
 });

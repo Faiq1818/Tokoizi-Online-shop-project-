@@ -44,15 +44,12 @@ app.get("/dashboard", authenticateToken, (req, res) => {
 console.log("MONGO_URI:", uri);
 // Database Connect
 async function connectDB() {
-  try{
-  mongoose
-    .connect(uri, {
+  try {
+    mongoose.connect(uri, {
       dbName: "TokoiziDB",
     });
-    console.log("Connection to Mongodb Successful")
-  }
-
-catch (err) {
+    console.log("Connection to Mongodb Successful");
+  } catch (err) {
     console.error("❌ MongoDB Connection Error:", err);
     process.exit(1);
   }

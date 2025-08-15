@@ -1,7 +1,7 @@
-const express = require('express');
+const express = require("express");
 const controller = express.Router();
 
-controller.post('/sendItemsData', async (req, res) => {
+controller.post("/sendItemsData", async (req, res) => {
   const { email, password } = req.body;
 
   const token = req.cookies.authcookie;
@@ -16,6 +16,5 @@ controller.post('/sendItemsData', async (req, res) => {
 
   res.status(200).send({ token });
 });
-
 
 module.exports = controller;

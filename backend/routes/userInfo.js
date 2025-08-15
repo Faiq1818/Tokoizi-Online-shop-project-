@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const usersschema = new mongoose.Schema({
   itemName: { type: String, required: true },
@@ -8,4 +8,4 @@ const usersschema = new mongoose.Schema({
   images: [{ type: String }],
 });
 
-module.exports = mongoose.model('users', usersschema);
+module.exports = mongoose.model("users", usersschema);

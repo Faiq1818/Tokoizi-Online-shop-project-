@@ -11,22 +11,28 @@ export default function Mainbody(){
         </div>
       </div>
 
-      <div className="border border-[#e5e7eb] rounded-r-lg flex flex-row">
-        <div>
+      <div className="border border-[#e5e7eb] rounded-r-lg flex flex-row py-3">
+        <div className="mr-36">
           <div className="text-start mx-5 my-2">
-            Name: Faiq Ghozy Erlangga
+            Name/Shop Name: Faiq Ghozy Erlangga
           </div>
-          <div className="text-center mx-5 my-2">
+          <div className="text-start mx-5 my-2 text-blue-600 text-sm">
+            Change the name
+          </div>
+          <div className="text-start mx-5 my-2">
             Email: ghozyerlanggafaiq@gmail.com
+          </div>
+          <div className="text-start mx-5 my-2 text-blue-600 text-sm">
+            Change the email
           </div>
         </div>
 
         <div>
-          <div className="text-start mx-5 my-2">
-            Profile picture
-          </div>
           <div className="text-center mx-5 my-2">
-            Email: ghozyerlanggafaiq@gmail.com
+            <img src={`http://localhost:3000/imghandler?imgName=assets/profile_pictures/defaultProfile.jpg`} className="h-50 w-50 rounded-full"/>
+          </div>
+          <div className="text-center">
+            Change the profile icon
           </div>
         </div>
       </div>

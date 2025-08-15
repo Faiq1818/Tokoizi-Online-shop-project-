@@ -13,8 +13,6 @@ type CardItem = {
 
 export default function Generatecardsection() {
   const [cardData, setCardData] = useState<CardItem[]>([]);
-  const [totalCardNow, setTotalCardNow] = useState(0);
-  const [totalCardMax, setTotalCardMax] = useState(0);
 
   useEffect(() => {
     axios

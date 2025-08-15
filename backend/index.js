@@ -12,6 +12,7 @@ const authRoutes = require("./routes/auth");
 const addItemsRoutes = require("./routes/addItemsRoutes");
 const cardsrootRoutes = require("./routes/cardSection-root");
 const imgHandler = require("./routes/imgHandler");
+const user = require("./routes/user");
 const sendItemsData = require("./controllers/sendItems.controllers");
 
 // Config
@@ -29,6 +30,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/auth", authRoutes);
+app.use("/user", user);
 app.use("/controller", sendItemsData);
 app.use(addItemsRoutes);
 app.use(cardsrootRoutes);

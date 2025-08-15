@@ -5,7 +5,7 @@ require("dotenv").config();
 const secretKey = process.env.SECRET_KEY;
 const path = require("path");
 
-const IMAGES_DIR = path.resolve(__dirname, "../uploads/images");
+const IMAGES_DIR = path.resolve(__dirname, "../assets/profile_pictures");
 const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
 
 router.get("/profileimg", async (req, res) => {
@@ -23,11 +23,22 @@ router.get("/profileimg", async (req, res) => {
 
     //check file extention
     const ext = path.extname(baseFileName).toLowerCase();
+    if (!ALLOWED_EXTENSIONS.includes(ext)) {
+      return res.status(400).send("Invalid file type")
+    }
 
-    const imgPath = path.resolve(__dirname, "../", imgName);
-    res.sendFile(imgPath);
+    //build safe path
+    const imgPath = path.join(IMAGES_DIR, baseFileName);
+    
+    // Send file with error handling that doesn't expose paths
+    res.sendFile(imgPath, (err) => {
+      if (err) {
+        res.status(404).send('Image not found');
+      }
+    });
+
   } catch (e) {
-    res.status(401).send("Error when additems");
+    res.status(404).send("Image not found");
   }
 });
 

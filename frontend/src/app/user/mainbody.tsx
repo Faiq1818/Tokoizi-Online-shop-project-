@@ -29,7 +29,7 @@ export default function Mainbody(){
 
         <div>
           <div className="text-center mx-5 my-2">
-            <img src={`http://localhost:3000/imghandler?imgName=assets/profile_pictures/defaultProfile.jpg`} className="h-50 w-50 rounded-full"/>
+            <img src={`http://localhost:3000/user/profileimg?imgName=defaultProfile.jpg`} className="h-50 w-50 rounded-full"/>
           </div>
           <div className="text-center">
             Change the profile icon

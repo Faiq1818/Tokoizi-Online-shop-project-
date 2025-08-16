@@ -16,8 +16,8 @@ const user = require("./routes/user");
 const sendItemsData = require("./controllers/sendItems.controllers");
 
 // Config
+const configDB = require("./config/dbConfig");
 const port = 3000;
-const uri = process.env.MONGO_URI_DEV;
 
 app.use(
   cors({
@@ -41,21 +41,10 @@ app.get("/dashboard", authenticateToken, (req, res) => {
   res.status(200).send("Welcome to the dashboard, " + req.user.userId);
 });
 
-console.log("MONGO_URI:", uri);
 // Database Connect
-async function connectDB() {
-  try {
-    mongoose.connect(uri, {
-      dbName: "TokoiziDB",
-    });
-    console.log("Connection to Mongodb Successful");
-  } catch (err) {
-    console.error("❌ MongoDB Connection Error:", err);
-    process.exit(1);
-  }
-}
-connectDB();
+configDB();
 
+// Checking port
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

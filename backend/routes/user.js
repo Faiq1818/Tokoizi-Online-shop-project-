@@ -1,6 +1,6 @@
-import express from 'express';
-import 'dotenv/config'
-import path from 'path';
+import express from "express";
+import "dotenv/config";
+import path from "path";
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -26,19 +26,18 @@ router.get("/profileimg", async (req, res) => {
     //check file extention
     const ext = path.extname(baseFileName).toLowerCase();
     if (!ALLOWED_EXTENSIONS.includes(ext)) {
-      return res.status(400).send("Invalid file type")
+      return res.status(400).send("Invalid file type");
     }
 
     //build safe path
     const imgPath = path.join(IMAGES_DIR, baseFileName);
-    
+
     // Send file with error handling that doesn't expose paths
     res.sendFile(imgPath, (err) => {
       if (err) {
-        res.status(404).send('Image not found');
+        res.status(404).send("Image not found");
       }
     });
-
   } catch (e) {
     res.status(404).send("Image not found");
   }

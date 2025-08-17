@@ -1,20 +1,20 @@
 // Dependencies
-import express from 'express';
-import 'dotenv/config'
-import cookieParser from 'cookie-parser';
-import cors from 'cors';
+import express from "express";
+import "dotenv/config";
+import cookieParser from "cookie-parser";
+import cors from "cors";
 
 // Routes and Middleware
-import { authenticateToken } from './middleware/authenticateToken.js';
-import authRoutes from './routes/auth.js';
-import addItemsRoutes from './routes/addItemsRoutes.js';
-import cardsrootRoutes from './routes/cardSection-root.js';
-import imgHandler from './routes/imgHandler.js';
-import user from './routes/user.js';
-import sendItemsData from './controllers/sendItems.controllers.js';
+import { authenticateToken } from "./middleware/authenticateToken.js";
+import authRoutes from "./routes/auth.js";
+import addItemsRoutes from "./routes/addItemsRoutes.js";
+import cardsrootRoutes from "./routes/cardSection-root.js";
+import imgHandler from "./routes/imgHandler.js";
+import user from "./routes/user.js";
+import sendItemsData from "./controllers/sendItems.controllers.js";
 
 // Config
-import configDB from './config/dbConfig.js';
+import configDB from "./config/dbConfig.js";
 const app = express();
 const port = 3000;
 

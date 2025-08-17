@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const itemsschema = new mongoose.Schema({
   itemName: { type: String, required: true },

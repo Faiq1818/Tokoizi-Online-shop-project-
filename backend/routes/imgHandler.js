@@ -1,9 +1,8 @@
-const express = require("express");
+import express from 'express';
+import 'dotenv/config'
+import path from 'path';
+
 const router = express.Router();
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
-const secretKey = process.env.SECRET_KEY;
-const path = require("path");
 
 router.get("/imghandler", async (req, res) => {
   const { imgName } = req.query;
@@ -15,4 +14,4 @@ router.get("/imghandler", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

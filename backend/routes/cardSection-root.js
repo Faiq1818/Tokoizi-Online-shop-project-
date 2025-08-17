@@ -1,11 +1,11 @@
-const express = require("express");
+import express from 'express';
 const router = express.Router();
 
-const Items = require("../models/items");
+import Items from '../models/items.js';
 
 router.get("/getcardsroot", async (req, res) => {
   const user = await Items.find();
   res.json(user);
 });
 
-module.exports = router;
+export default router;

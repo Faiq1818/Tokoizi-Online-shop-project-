@@ -8,8 +8,8 @@ import cors from 'cors';
 import { authenticateToken } from './middleware/authenticateToken.js';
 import authRoutes from './routes/auth.js';
 import addItemsRoutes from './routes/addItemsRoutes.js';
-const cardsrootRoutes = require("./routes/cardSection-root");
-const imgHandler = require("./routes/imgHandler");
+import cardsrootRoutes from './routes/cardSection-root.js';
+import imgHandler from './routes/imgHandler.js';
 const user = require("./routes/user");
 const sendItemsData = require("./controllers/sendItems.controllers");
 

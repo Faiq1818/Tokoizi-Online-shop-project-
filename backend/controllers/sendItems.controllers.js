@@ -1,4 +1,4 @@
-const express = require("express");
+import express from 'express';
 const controller = express.Router();
 
 controller.post("/sendItemsData", async (req, res) => {
@@ -17,4 +17,4 @@ controller.post("/sendItemsData", async (req, res) => {
   res.status(200).send({ token });
 });
 
-module.exports = controller;
+export default controller;

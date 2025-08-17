@@ -1,9 +1,11 @@
-const express = require("express");
+import express from 'express';
+import 'dotenv/config'
+import path from 'path';
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const router = express.Router();
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
-const secretKey = process.env.SECRET_KEY;
-const path = require("path");
 
 const IMAGES_DIR = path.resolve(__dirname, "../assets/profile_pictures");
 const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
@@ -42,4 +44,4 @@ router.get("/profileimg", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

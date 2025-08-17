@@ -10,12 +10,12 @@ import authRoutes from './routes/auth.js';
 import addItemsRoutes from './routes/addItemsRoutes.js';
 import cardsrootRoutes from './routes/cardSection-root.js';
 import imgHandler from './routes/imgHandler.js';
-const user = require("./routes/user");
-const sendItemsData = require("./controllers/sendItems.controllers");
+import user from './routes/user.js';
+import sendItemsData from './controllers/sendItems.controllers.js';
 
 // Config
+import configDB from './config/dbConfig.js';
 const app = express();
-const configDB = require("./config/dbConfig");
 const port = 3000;
 
 app.use(

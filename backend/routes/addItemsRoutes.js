@@ -1,12 +1,13 @@
-const express = require("express");
+import express from 'express';
+import jwt from 'jsonwebtoken';
+import multer from 'multer';
+import 'dotenv/config'
+
 const router = express.Router();
-const jwt = require("jsonwebtoken");
-const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
-require("dotenv").config();
 const secretKey = process.env.SECRET_KEY;
 
-const Items = require("../models/items");
+import Items from '../models/items.js';
 
 router.post("/additems", upload.array("images", 4), async (req, res) => {
   const { itemName, price, description } = req.body;
@@ -34,4 +35,4 @@ router.post("/additems", upload.array("images", 4), async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

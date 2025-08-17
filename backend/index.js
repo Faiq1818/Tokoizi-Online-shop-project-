@@ -3,19 +3,18 @@ import express from 'express';
 import 'dotenv/config'
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-const app = express();
 
 // Routes and Middleware
 import { authenticateToken } from './middleware/authenticateToken.js';
-//const authRoutes = require("./routes/auth");
 import authRoutes from './routes/auth.js';
-const addItemsRoutes = require("./routes/addItemsRoutes");
+import addItemsRoutes from './routes/addItemsRoutes.js';
 const cardsrootRoutes = require("./routes/cardSection-root");
 const imgHandler = require("./routes/imgHandler");
 const user = require("./routes/user");
 const sendItemsData = require("./controllers/sendItems.controllers");
 
 // Config
+const app = express();
 const configDB = require("./config/dbConfig");
 const port = 3000;
 

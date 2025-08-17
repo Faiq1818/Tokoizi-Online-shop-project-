@@ -1,14 +1,14 @@
 // Dependencies
-const express = require("express");
-require("dotenv").config();
-const mongoose = require("mongoose");
-const cookieParser = require("cookie-parser");
-const cors = require("cors");
+import express from 'express';
+import 'dotenv/config'
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
 const app = express();
 
 // Routes and Middleware
-const authenticateToken = require("./middleware/authenticateToken");
-const authRoutes = require("./routes/auth");
+import { authenticateToken } from './middleware/authenticateToken.js';
+//const authRoutes = require("./routes/auth");
+import authRoutes from './routes/auth.js';
 const addItemsRoutes = require("./routes/addItemsRoutes");
 const cardsrootRoutes = require("./routes/cardSection-root");
 const imgHandler = require("./routes/imgHandler");

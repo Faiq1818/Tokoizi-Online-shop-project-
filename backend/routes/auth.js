@@ -1,12 +1,12 @@
-// routes/auth.js
-const express = require("express");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+import express from 'express';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import 'dotenv/config'
+
 const router = express.Router();
-require("dotenv").config();
 const secretKey = process.env.SECRET_KEY;
 
-const User = require("../models/user");
+import User from '../models/user.js';
 
 // Signup route
 router.post("/signup", async (req, res) => {
@@ -67,4 +67,4 @@ router.get("/deletecookie", function (req, res) {
   console.log("Cookie cleared");
 });
 
-module.exports = router;
+export default router;

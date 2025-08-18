@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 
 // Middlewares
-import { authenticateToken } from "./middleware/authenticateToken.js";
+import { authenticateToken } from "./middleware/authenticateTokenMiddleware.js";
 
 // Routes
 import authRoutes from "./routes/authRoutes.js";

@@ -7,7 +7,7 @@ const router = express.Router();
 const upload = multer({ dest: "uploads/" });
 const secretKey = process.env.SECRET_KEY;
 
-import Items from "../models/items.js";
+import Items from "../models/itemModel.js";
 
 router.post("/additems", upload.array("images", 4), async (req, res) => {
   const { itemName, price, description } = req.body;

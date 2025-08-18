@@ -11,7 +11,7 @@ import addItemsRoutes from "./routes/addItemsRoutes.js";
 import cardsrootRoutes from "./routes/cardSection-root.js";
 import imgHandler from "./routes/imgHandler.js";
 import user from "./routes/user.js";
-import sendItemsData from "./controllers/sendItems.controllers.js";
+import sendItemsData from "./controllers/sendItemsController.js";
 
 // Config
 import configDB from "./config/dbConfig.js";
@@ -24,10 +24,10 @@ app.use(
     credentials: true,
   }),
 );
-
 app.use(express.json());
 app.use(cookieParser());
 
+// Using routes from all file
 app.use("/auth", authRoutes);
 app.use("/user", user);
 app.use("/controller", sendItemsData);

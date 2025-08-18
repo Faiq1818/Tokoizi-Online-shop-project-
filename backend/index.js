@@ -4,13 +4,17 @@ import "dotenv/config";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
-// Routes and Middleware
+// Middlewares
 import { authenticateToken } from "./middleware/authenticateToken.js";
-import authRoutes from "./routes/auth.js";
+
+// Routes
+import authRoutes from "./routes/authRoutes.js";
 import addItemsRoutes from "./routes/addItemsRoutes.js";
-import cardsrootRoutes from "./routes/cardSection-root.js";
-import imgHandler from "./routes/imgHandler.js";
-import user from "./routes/user.js";
+import cardsrootRoutes from "./routes/cardSectionRoutes.js";
+import imgHandlerRoutes from "./routes/imgHandlerRoutes.js";
+import userInfoRoutes from "./routes/userInfoRoutes.js";
+
+// Controller
 import sendItemsData from "./controllers/sendItemsController.js";
 
 // Config
@@ -29,11 +33,11 @@ app.use(cookieParser());
 
 // Using routes from all file
 app.use("/auth", authRoutes);
-app.use("/user", user);
+app.use("/user", userInfoRoutes);
 app.use("/controller", sendItemsData);
 app.use(addItemsRoutes);
 app.use(cardsrootRoutes);
-app.use(imgHandler);
+app.use(imgHandlerRoutes);
 
 // Protected route example
 app.get("/dashboard", authenticateToken, (req, res) => {

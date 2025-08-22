@@ -21,7 +21,6 @@ import sendItemsData from "./controllers/sendItemsController.js";
 import configDB from "./config/dbConfig.js";
 const app = express();
 const port = 3000;
-
 app.use(
   cors({
     origin: "http://localhost:3001",

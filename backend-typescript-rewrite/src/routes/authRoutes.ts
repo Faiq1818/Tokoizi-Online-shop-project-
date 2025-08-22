@@ -5,7 +5,7 @@ import "dotenv/config";
 const router = express.Router();
 const secretKey = process.env.SECRET_KEY;
 
-import * as authController from '../controllers/authController.js'
+import * as authController from '../controllers/authController.js';
 
 // Signup route
 router.post("/signup", authController.signUp)

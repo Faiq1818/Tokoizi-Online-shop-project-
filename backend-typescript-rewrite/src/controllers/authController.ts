@@ -1,9 +1,11 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import express from "express";
 
+const secretKey = process.env.SECRET_KEY;
 import User from "../models/userModel.js";
 
-export const signUp = async (req, res) => { 
+export const signUp = async (req: express.Request, res: express.Response) => { 
   const { email, password } = req.body;
 
   // Cek apakah username sudah ada
@@ -23,7 +25,7 @@ export const signUp = async (req, res) => {
 };
 
 
-export const login = async (req, res) => { 
+export const login = async (req: express.Request, res: express.Response) => { 
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
@@ -38,7 +40,7 @@ export const login = async (req, res) => {
     maxAge: 900000,
     httpOnly: true,
     secure: false,
-    sameSite: "Lax",
+    sameSite: "lax",
   });
 
   res.status(200).send({ token });

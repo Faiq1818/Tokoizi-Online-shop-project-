@@ -9,9 +9,9 @@ const __dirname = path.dirname(__filename);
 const router = express.Router();
 
 router.get("/imghandler", async (req, res) => {
-  const imgName = req.query['imgName'] as string;
+  const imgName = req.query["imgName"] as string;
 
-  if (!imgName || Array.isArray(imgName) || typeof imgName === 'object') {
+  if (!imgName || Array.isArray(imgName) || typeof imgName === "object") {
     return res.status(400).send("Invalid image name parameter");
   }
 

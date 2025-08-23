@@ -2,7 +2,7 @@ import express from "express";
 import "dotenv/config";
 
 const router = express.Router();
-import * as authController from '../controllers/authController.js';
+import * as authController from "../controllers/authController.js";
 
 router.post("/signup", authController.signUp);
 router.post("/login", authController.login);

@@ -14,8 +14,10 @@ import addItemsRoutes from "./routes/addItemsRoutes.js";
 import cardsrootRoutes from "./routes/cardSectionRoutes.js";
 import imgHandlerRoutes from "./routes/imgHandlerRoutes.js";
 
-// Config
+// Database
 import configDB from "./config/dbConfig.js";
+
+// Config
 const app = express();
 const port = 3000;
 app.use(
@@ -26,7 +28,6 @@ app.use(
 );
 app.use(express.json());
 app.use(cookieParser());
-
 
 // Using routes from all file
 app.use("/auth", authRoutes);

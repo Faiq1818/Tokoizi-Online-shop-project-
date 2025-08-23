@@ -3,7 +3,11 @@ import express from "express";
 
 const secretKey = process.env.SECRET_KEY;
 
-export const authenticateToken = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+export const authenticateToken = (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction,
+) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
 

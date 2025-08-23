@@ -5,7 +5,7 @@ import express from "express";
 const secretKey = process.env.SECRET_KEY;
 import User from "../models/userModel.js";
 
-export const signUp = async (req: express.Request, res: express.Response) => { 
+export const signUp = async (req: express.Request, res: express.Response) => {
   const { email, password } = req.body;
 
   // Cek apakah username sudah ada
@@ -24,8 +24,7 @@ export const signUp = async (req: express.Request, res: express.Response) => {
   res.status(201).send("User created");
 };
 
-
-export const login = async (req: express.Request, res: express.Response) => { 
+export const login = async (req: express.Request, res: express.Response) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
@@ -47,7 +46,7 @@ export const login = async (req: express.Request, res: express.Response) => {
 };
 
 export const verify = (req: express.Request, res: express.Response) => {
-  const token = req.cookies['authcookie'];
+  const token = req.cookies["authcookie"];
   if (!token) return res.status(401).json({ loggedIn: false });
 
   try {
@@ -57,4 +56,3 @@ export const verify = (req: express.Request, res: express.Response) => {
     res.status(401).json({ loggedIn: false });
   }
 };
-

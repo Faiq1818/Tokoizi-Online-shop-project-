@@ -16,7 +16,7 @@ router.get("/profileimg", async (req, res) => {
     const { imgName } = req.query;
 
     //check is there any imgName?
-    if (!imgName || typeof imgName !== 'string') {
+    if (!imgName || typeof imgName !== "string") {
       return res.status(400).send("Image name required");
     }
 

@@ -1,11 +1,9 @@
 import express from "express";
 const router = express.Router();
 
-import Items from "../models/itemModel.js";
+import * as cardSectionController from "../controllers/cardSectionController.js";
 
-router.get("/getcardsroot", async (req, res) => {
-  const user = await Items.find();
-  res.json(user);
-});
+// Routers
+router.get("/getcardsroot", cardSectionController.cardsInfo);
 
 export default router;

@@ -4,6 +4,9 @@ import "dotenv/config";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
+// Middlewares
+//import { authenticateToken } from "./middleware/authenticateTokenMiddleware.js";
+
 // Import routes
 import authRoutes from "./routes/authRoutes.js";
 import userInfoRoutes from "./routes/userInfoRoutes.js";
@@ -31,6 +34,11 @@ app.use("/user", userInfoRoutes);
 app.use(addItemsRoutes);
 app.use(cardsrootRoutes);
 app.use(imgHandlerRoutes);
+
+// Protected route example, this is some piece of sh..
+//app.get("/dashboard", authenticateToken, (req, res) => {
+//  res.status(200).send("Welcome to the dashboard, " + req.user.userId);
+//});
 
 // Database Connect
 configDB();

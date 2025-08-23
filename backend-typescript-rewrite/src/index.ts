@@ -6,6 +6,10 @@ import cors from "cors";
 
 // Import routes
 import authRoutes from "./routes/authRoutes.js";
+import userInfoRoutes from "./routes/userInfoRoutes.js";
+import addItemsRoutes from "./routes/addItemsRoutes.js";
+import cardsrootRoutes from "./routes/cardSectionRoutes.js";
+import imgHandlerRoutes from "./routes/imgHandlerRoutes.js";
 
 // Config
 import configDB from "./config/dbConfig.js";
@@ -21,6 +25,12 @@ app.use(express.json());
 app.use(cookieParser());
 
 
+// Using routes from all file
+app.use("/auth", authRoutes);
+app.use("/user", userInfoRoutes);
+app.use(addItemsRoutes);
+app.use(cardsrootRoutes);
+app.use(imgHandlerRoutes);
 
 // Database Connect
 configDB();

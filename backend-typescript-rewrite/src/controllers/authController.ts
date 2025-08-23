@@ -45,3 +45,16 @@ export const login = async (req: express.Request, res: express.Response) => {
 
   res.status(200).send({ token });
 };
+
+export const verify = (req: express.Request, res: express.Response) => {
+  const token = req.cookies['authcookie'];
+  if (!token) return res.status(401).json({ loggedIn: false });
+
+  try {
+    const user = jwt.verify(token, secretKey);
+    res.json({ loggedIn: true, user });
+  } catch (e) {
+    res.status(401).json({ loggedIn: false });
+  }
+};
+

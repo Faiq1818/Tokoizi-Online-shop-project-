@@ -6,7 +6,10 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export const imgHandler = async (req: express.Request, res: express.Response) => {
+export const imgHandler = async (
+  req: express.Request,
+  res: express.Response,
+) => {
   const imgName = req.query["imgName"] as string;
 
   if (!imgName || Array.isArray(imgName) || typeof imgName === "object") {
@@ -19,4 +22,4 @@ export const imgHandler = async (req: express.Request, res: express.Response) =>
   } catch (e) {
     res.status(401).send("Error when additems");
   }
-}
+};

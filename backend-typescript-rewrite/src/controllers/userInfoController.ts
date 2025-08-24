@@ -9,7 +9,10 @@ const __dirname = path.dirname(__filename);
 const IMAGES_DIR = path.resolve(__dirname, "../assets/profile_pictures");
 const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
 
-export const profileImage = async (req: express.Request, res: express.Response) => {
+export const profileImage = async (
+  req: express.Request,
+  res: express.Response,
+) => {
   try {
     //take the query
     const { imgName } = req.query;
@@ -41,4 +44,3 @@ export const profileImage = async (req: express.Request, res: express.Response) 
     res.status(404).send("Image not found");
   }
 };
-

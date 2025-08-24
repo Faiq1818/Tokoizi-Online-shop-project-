@@ -1,14 +1,35 @@
 import express from "express";
 import "dotenv/config";
+import jwt from "jsonwebtoken";
 import path from "path";
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 const IMAGES_DIR = path.resolve(__dirname, "../assets/profile_pictures");
 const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
 
+const secretKey = process.env.SECRET_KEY;
+import User from "../models/userModel.js";
+
+export const userName = async (
+  req: express.Request,
+  res: express.Response,
+) => {
+  const token = req.cookies["authcookie"];
+  try {
+    const decoded = jwt.verify(token, secretKey) as string;
+    const user = await User.find(token.);
+
+  res.json(user);
+
+
+  } catch (e) {
+  }
+
+};
+
+// get the profile image
 export const profileImage = async (
   req: express.Request,
   res: express.Response,

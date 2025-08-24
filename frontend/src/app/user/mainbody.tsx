@@ -17,13 +17,13 @@ export default function Mainbody(){
             Name/Shop Name: Faiq Ghozy Erlangga
           </div>
           <div className="text-start mx-5 my-2 text-blue-600 text-sm">
-            Change the name
+            Change username
           </div>
           <div className="text-start mx-5 my-2">
             Email: ghozyerlanggafaiq@gmail.com
           </div>
           <div className="text-start mx-5 my-2 text-blue-600 text-sm">
-            Change the email
+            Change email
           </div>
         </div>
 

@@ -18,7 +18,7 @@ export const signUp = async (req: express.Request, res: express.Response) => {
   const hashedPassword = await bcrypt.hash(password, 8);
 
   // Simpan user ke database
-  const newUser = new User({ email, password: hashedPassword });
+  const newUser = new User({ email, password: hashedPassword, username: "-", alamat: "-", profile: 0  });
   await newUser.save();
 
   res.status(201).send("User created");
